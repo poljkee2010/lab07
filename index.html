@@ -38,7 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -77,7 +77,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">print Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD <a href="https://travis-ci.org/poljkee2010/lab07"></a></p>
+<h2>Laboratory work V</h2>
+<p>Данная лабораторная работа посвещена изучению систем непрерывной интеграции на примере сервиса <b>Travis CI</b></p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ open https://travis-ci.org</div></div><!-- fragment --><h2>Tasks</h2>
+<ul>
+<li>[X] 1. Авторизоваться на сервисе <b>Travis CI</b> с использованием <b>GitHub</b> аккаунта</li>
+<li>[X] 2. Создать публичный репозиторий с названием <b>lab07</b> на сервисе <b>GitHub</b></li>
+<li>[X] 3. Ознакомиться со ссылками учебного материала</li>
+<li>[X] 4. Включить интеграцию сервиса <b>Travis CI</b> с созданным репозиторием</li>
+<li>[X] 5. Получить токен для <b>Travis CLI</b> с правами <b>repo</b> и <b>user</b></li>
+<li>[X] 6. Получить фрагмент вставки значка сервиса <b>Travis CI</b> в формате <b>Markdown</b></li>
+<li>[X] 7. Установить <a href="https://github.com/travis-ci/travis.rb#installation"><b>Travis CLI</b></a></li>
+<li>[X] 8. Выполнить инструкцию учебного материала</li>
+<li>[X] 9. Составить отчет и отправить ссылку личным сообщением в <b>Slack</b></li>
+</ul>
+<h2>Tutorial</h2>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ export GITHUB_USERNAME=&lt;имя_пользователя&gt;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ export GITHUB_TOKEN=&lt;полученный_токен&gt;</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ git clone https://github.com/${GITHUB_USERNAME}/lab04 lab07</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ cd lab07</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;$ git remote remove origin</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;$ git remote add origin https://github.com/${GITHUB_USERNAME}/lab07</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cat &gt; .travis.yml &lt;&lt;EOF</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;language: cpp</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;EOF</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cat &gt;&gt; .travis.yml &lt;&lt;EOF</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;script:</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;- cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;- cmake --build _build</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;- cmake --build _build --target install</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;EOF</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cat &gt;&gt; .travis.yml &lt;&lt;EOF</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;addons:</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;  apt:</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    sources:</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;      - george-edison55-precise-backports</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    packages:</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;      - cmake</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;      - cmake-data</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;EOF</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ travis login --github-token ${GITHUB_TOKEN}</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ travis lint</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ ex -sc &#39;1i|&lt;фрагмент_вставки_значка&gt;&#39; -cx README.md</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ git add .travis.yml</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ git add README.md</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;$ git commit -m&quot;added CI&quot;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;$ git push origin master</div></div><!-- fragment --><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ travis lint</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ travis accounts</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;$ travis sync</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;$ travis repos</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;$ travis enable</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;$ travis whatsup</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;$ travis branches</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;$ travis history</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;$ travis show</div></div><!-- fragment --><h2>Report</h2>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;$ cd ~/workspace/labs/</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;$ export LAB_NUMBER=06</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;$ git clone https://github.com/tp-labs/lab${LAB_NUMBER} tasks/lab${LAB_NUMBER}</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;$ mkdir reports/lab${LAB_NUMBER}</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;$ cp tasks/lab${LAB_NUMBER}/README.md reports/lab${LAB_NUMBER}/REPORT.md</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;$ cd reports/lab${LAB_NUMBER}</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;$ edit REPORT.md</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;$ gistup -m &quot;lab${LAB_NUMBER}&quot;</div></div><!-- fragment --><h2>Links</h2>
+<ul>
+<li><a href="https://github.com/travis-ci/travis.rb">Travis Client</a></li>
+<li><a href="https://www.appveyor.com/">AppVeyour</a></li>
+<li><a href="https://about.gitlab.com/gitlab-ci/">GitLab CI</a></li>
+</ul>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;Copyright (c) 2017 Братья Вершинины</div></div><!-- fragment --><hr/>
+ <h1>lab07</h1>
+<blockquote class="doxtable">
+<blockquote class="doxtable">
+<blockquote class="doxtable">
+<blockquote class="doxtable">
+<blockquote class="doxtable">
+<blockquote class="doxtable">
+<blockquote class="doxtable">
+<p>8a2537755533041d39144845bca4d234223c165b</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
